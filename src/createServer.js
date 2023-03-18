@@ -1,5 +1,3 @@
-module.exports = createServer;
-
 const http = require('http');
 
 function createServer() {
@@ -8,3 +6,5 @@ function createServer() {
   });
   return SERVER;
 }
+
+module.exports = createServer;
