@@ -1,0 +1,23 @@
+{
+  "name": "color-input-server",
+  "version": "1.0.0",
+  "description": "Server for 'color-input' application",
+  "main": "server.js",
+  "scripts": {
+    "test": "test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IvanPostarnak/color-input-server.git"
+  },
+  "author": "Ivan Postarnak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IvanPostarnak/color-input-server/issues"
+  },
+  "homepage": "https://github.com/IvanPostarnak/color-input-server#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3"
+  }
+}
