@@ -1,10 +1,7 @@
-const path = require('path');
 const fsPromise = require('fs/promises');
 
-async function createLogsDir(root, dirName) {
-  let finalPath = path.join(root, dirName);
-  
-  return fsPromise.mkdir(finalPath)
+async function createLogsDir(dirURL) {
+  return fsPromise.mkdir(dirURL)
   .then(() => {
     return true;
   })

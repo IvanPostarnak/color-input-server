@@ -1,13 +1,20 @@
-const { ROOT, LOGS_DIR_NAME, LOG_FILE_BASIS_NAME } = require('./constants/envConstants');
 const { createLogsDir } = require('./helpers/createLogsDir');
 const { createLogFile } = require('./helpers/createLogFile');
+
+const {
+  LOGS_DIR_NAME,
+  LOGS_DIR_URL,
+  LOG_FILE_BASIS_NAME,
+  LOG_FILE_NAME,
+  LOG_FILE_URL,
+} = require('./constants/envConstants');
 
 async function restoreEnvironment() {
   // object to save all the results of restoring environments
   const restoreStatusesObject = {};
 
-  restoreStatusesObject[LOGS_DIR_NAME] = await createLogsDir(ROOT, LOGS_DIR_NAME);
-  restoreStatusesObject[LOG_FILE_BASIS_NAME] = await createLogFile(ROOT, LOGS_DIR_NAME, LOG_FILE_BASIS_NAME);
+  restoreStatusesObject[LOGS_DIR_NAME] = await createLogsDir(LOGS_DIR_URL);
+  restoreStatusesObject[LOG_FILE_BASIS_NAME] = await createLogFile(LOG_FILE_URL, LOG_FILE_NAME);
 
   return JSON.stringify(restoreStatusesObject);
 }
