@@ -1,8 +1,7 @@
-const fsPromise = require('fs/promises');
-const path = require('path');
+const writeLog = require('./helpers/writeLog')
+const LOG_CONSTANTS = require('./constants/logConstants');
 
-function writeToLogFile(text) {
-  
-}
-
-module.exports = writeToLogFile;
+module.exports = {
+  writeLog: writeLog,
+  LOG_CONSTANTS
+};
