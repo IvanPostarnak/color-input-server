@@ -20,4 +20,5 @@ restoreEnvironment()
 });
 
 const SERVER = createServer();
+console.log(typeof writeLog)
 writeLog();

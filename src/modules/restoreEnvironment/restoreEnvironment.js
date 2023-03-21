@@ -1,5 +1,5 @@
-const { createLogsDir } = require('./helpers/createLogsDir');
-const { createLogFile } = require('./helpers/createLogFile');
+const { createLogsDir } = require('./features/createLogsDir');
+const { createLogFile } = require('./features/createLogFile');
 
 const {
   LOGS_DIR_NAME,

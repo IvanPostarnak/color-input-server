@@ -1,7 +1,7 @@
-const writeLog = require('./helpers/writeLog')
+const writeLog = require('./features/writeLog')
 const LOG_CONSTANTS = require('./constants/logConstants');
 
 module.exports = {
-  writeLog: writeLog,
+  writeLog,
   LOG_CONSTANTS
 };
