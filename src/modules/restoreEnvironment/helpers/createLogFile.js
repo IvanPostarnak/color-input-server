@@ -3,16 +3,20 @@ const fsPromise = require('fs/promises');
 async function createLogFile(logURL, logFileName) {
   const date = new Date();
   let logEntryString = `FILE ${logFileName} was created at ${date.getHours()}:${date.getMinutes()}`;
-  
-  return fsPromise.writeFile(logURL, logEntryString, {
-    overwrite: false
-  })
+
+  return fsPromise.access(logURL)
   .then(() => {
-    return true;
+    return false;
   })
-  .catch((err) => {
-    return err.message;
-  })
+  .catch(() => {
+    return fsPromise.writeFile(logURL, logEntryString)
+    .then(() => {
+      return true;
+    })
+    .catch((err) => {
+      return err.message;
+    })
+  });
 }
 
 module.exports = {
