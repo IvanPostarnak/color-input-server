@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 
 const createServer = require(path.resolve('src', 'createServer.js'));
 const { writeLog } = require(path.resolve('src', 'modules', 'serverLog', 'serverLog.js'));
-const restoreEnvironment = require(path.resolve('src', 'modules', 'restoreEnvironment', 'restoreEnvironment.js'));
+const { restoreEnvironment } = require(path.resolve('src', 'modules', 'restoreEnvironment', 'restoreEnvironment.js'));
 
 dotenv.config();
 const PORT = process.env.PORT;
