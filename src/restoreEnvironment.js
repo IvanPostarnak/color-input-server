@@ -1,21 +1,19 @@
 const path = require('path');
 const fsPromise = require('fs/promises');
 
-const SERVER_LOGS_DIR_NAME = "logs";
+const LOGS_DIR_NAME = "logs";
 
-function restoreEnvironment() {
+async function restoreEnvironment() {
   const restoreStatusesObject = {};
-  // TODO make it work as LONG PROMISE - return object
-  createServerLogsDir()
-  .then((response) => {
-    restoreStatusesObject[SERVER_LOGS_DIR_NAME] = response;
-    console.log(`restoreStatusesObject: ${JSON.stringify(restoreStatusesObject)}`);
-  })
+  
+  restoreStatusesObject[LOGS_DIR_NAME] = await createLogsDir(LOGS_DIR_NAME)
+  console.log(`restoreStatusesObject: ${JSON.stringify(restoreStatusesObject)}`);
+  return JSON.stringify(restoreStatusesObject);
 }
 
 
-function createServerLogsDir() {
-  let finalPath = path.resolve('.', SERVER_LOGS_DIR_NAME);
+async function createLogsDir(name) {
+  let finalPath = path.resolve('.', name);
   return fsPromise.mkdir(finalPath)
   .then(() => {
     return true;

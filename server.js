@@ -10,8 +10,12 @@ const PORT = process.env.PORT;
 const HOST = process.env.hostname;
 console.log(`PORT: ${PORT}, HOST: ${HOST}`);
 
-const RESTORE_STATUSES = restoreEnvironment();
-console.log(`RESTORE_STATUSES: ${JSON.stringify(RESTORE_STATUSES)}`);
+const RESTORE_STATUSES = {};
+restoreEnvironment()
+.then((response) => {
+  RESTORE_STATUSES.statuses = JSON.parse(response);
+  console.log(`RESTORE_STATUSES: ${JSON.stringify(RESTORE_STATUSES)}`);
+});
 
 const SERVER = createServer();
 writeToLogFile();
