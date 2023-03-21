@@ -2,7 +2,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 
 const createServer = require(path.resolve('src', 'createServer.js'));
-const writeToLogFile = require(path.resolve('src', 'serverLog.js'));
+const writeToLogFile = require(path.resolve('src', 'modules', 'serverLog', 'serverLog.js'));
 const restoreEnvironment = require(path.resolve('src', 'modules', 'restoreEnvironment', 'restoreEnvironment.js'));
 
 dotenv.config();
