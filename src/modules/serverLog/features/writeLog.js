@@ -1,4 +1,6 @@
-async function writeLog(text) {
+const { LOG_FILE_URL } = require('./../constants/logConstants');
+
+async function writeLog(data, caller) {
 
 }
 
