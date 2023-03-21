@@ -1,15 +1,15 @@
 const path = require('path');
 const fsPromise = require('fs/promises');
 
-async function createLogsDir(name) {
-  let finalPath = path.resolve('.', name);
+async function createLogsDir(root, dirName) {
+  let finalPath = path.join(root, dirName);
   
   return fsPromise.mkdir(finalPath)
   .then(() => {
     return true;
   })
   .catch((err) => {
-    return err.message;
+    return err.code;
   })
 }
 
