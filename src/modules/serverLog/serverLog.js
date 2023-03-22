@@ -1,4 +1,5 @@
 module.exports = {
   writeLog: require('./features/writeLog'),
-  LOG_CONSTANTS: require('./constants/logConstants')
+  logURLs: require('./constants/logConstants').logURLs,
+  logNames: require('./constants/logConstants').logNames
 };

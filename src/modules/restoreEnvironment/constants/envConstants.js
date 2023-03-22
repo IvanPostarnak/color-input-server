@@ -1,5 +1,6 @@
-const { LOG_CONSTANTS } = require('./../../serverLog/serverLog');
+const { logURLs, logNames } = require('./../../serverLog/serverLog');
 
 module.exports = {
-  ...LOG_CONSTANTS
+  ...logURLs,
+  ...logNames
 }

@@ -32,11 +32,3 @@ exports.logURLs = {
   LOGS_DIR_URL,
   LOG_FILE_URL
 }
-
-module.exports = {
-  LOGS_DIR_NAME,
-  LOGS_DIR_URL,
-  LOG_FILE_BASIS_NAME,
-  LOG_FILE_NAME,
-  LOG_FILE_URL,
-};
