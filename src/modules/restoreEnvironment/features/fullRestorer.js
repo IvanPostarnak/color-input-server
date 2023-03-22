@@ -8,7 +8,7 @@ function fullRestorer() {
   restoreStatusesObject[LOGS_DIR_NAME] = createLogsDir();
   restoreStatusesObject[LOG_FILE_BASIS_NAME] = createLogFile();
 
-  return JSON.stringify(restoreStatusesObject);
+  return restoreStatusesObject;
 }
 
 module.exports = fullRestorer;

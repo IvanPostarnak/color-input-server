@@ -1,19 +1,21 @@
 const path = require('path');
 const dotenv = require('dotenv');
 
-const createServer = require(path.resolve('src', 'createServer.js'));
-const { restoreEnvironment } = require(path.resolve('src', 'modules', 'restoreEnvironment', 'restoreEnvironment.js'));
-const { writeLog } = require(path.resolve('src', 'modules', 'serverLog', 'serverLog.js'));
+const { restoreEnvironment } = require('./src/modules/restoreEnvironment/restoreEnvironment');
+const { writeLog } = require('./src/modules/serverLog/serverLog');
+const createServer = require('./src/createServer');
 
-const RESTORE_STATUSES = {};
-let response = restoreEnvironment();
+// name of main SERVER file
+const SERVER_JS = path.basename(__filename);
 
-for (let key in JSON.parse(response)) {
-  RESTORE_STATUSES[key] = JSON.parse(response)[key];
-}
-writeLog(`RESTORE_STATUSES: ${JSON.stringify(RESTORE_STATUSES)}`);
+// restore environment: files, dirs and etc that are not Git-tracked
+const RESTORE_STATUSES = restoreEnvironment();
+writeLog(`RESTORE_STATUSES: ${JSON.stringify(RESTORE_STATUSES)}`, SERVER_JS);
 
+// read '.env' configuration environment file and set parameters
 dotenv.config();
-writeLog(`PORT: ${process.env.PORT}, HOST: ${process.env.hostname}`);
+writeLog(`PORT: ${process.env.PORT}, HOST: ${process.env.hostname}`, SERVER_JS);
 
+// creating server Object
 const SERVER = createServer();
+writeLog(`SERVER: ${SERVER}, ${JSON.stringify(SERVER)}`, SERVER_JS);

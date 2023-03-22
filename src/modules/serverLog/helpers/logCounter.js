@@ -1,4 +1,4 @@
-function logCounter() {
+function initializeLogCounter() {
   let count = 0;
 
   function increment() {
@@ -12,4 +12,4 @@ function logCounter() {
   return {increment, getCount};
 }
 
-module.exports = logCounter;
+module.exports = initializeLogCounter;
