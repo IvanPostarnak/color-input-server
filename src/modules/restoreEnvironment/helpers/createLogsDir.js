@@ -2,12 +2,17 @@ const fs = require('fs');
 
 function createLogsDir(dirURL) {
 
-  try {
-    fs.mkdir(dirURL, (err) => {});
-    return true;
+  if (fs.existsSync(dirURL) === false) {
+    try {
+      fs.mkdir(dirURL, (err) => {});
+      return true;
 
-  } catch (err) {
-    return err.code;
+    } catch (err) {
+      return err.code;
+
+    }
+  } else {
+    return false;
 
   }
 }

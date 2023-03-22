@@ -4,12 +4,7 @@ function createLogFile(logURL, logFileName) {
   const date = new Date();
   let logEntryString = `FILE '${logFileName}' was created at ${date.getHours()}:${date.getMinutes()}`;
 
-  try {
-    fs.access(logURL, fs.constants.R_OK);
-    return false;
-
-  } catch (errAccess) {
-
+  if (fs.existsSync(logURL) === false) {
     try {
       fs.writeFile(logURL, logEntryString, (err) => {});
       return true;
@@ -18,6 +13,9 @@ function createLogFile(logURL, logFileName) {
       return errWrite.code;
 
     }
+  } else {
+    return false;
+    
   }
 }
 

@@ -7,7 +7,6 @@ const { writeLog } = require(path.resolve('src', 'modules', 'serverLog', 'server
 
 const RESTORE_STATUSES = {};
 let response = restoreEnvironment();
-console.log(response)
 
 for (let key in JSON.parse(response)) {
   RESTORE_STATUSES[key] = JSON.parse(response)[key];
