@@ -1,20 +1,12 @@
-const createLogsDir = require('./../helpers/createLogsDir');
-const createLogFile = require('./../helpers/createLogFile');
-
-const {
-  LOGS_DIR_NAME,
-  LOGS_DIR_URL,
-  LOG_FILE_BASIS_NAME,
-  LOG_FILE_NAME,
-  LOG_FILE_URL,
-} = require('./../constants/envConstants');
+const { LOGS_DIR_NAME, LOG_FILE_BASIS_NAME } = require('./../../serverLog/serverLog').logNames;
+const { createLogsDir, createLogFile } = require('./../../serverLog/serverLog');
 
 function fullRestorer() {
   // object to save all the results of restoring environments
   const restoreStatusesObject = {};
-
-  restoreStatusesObject[LOGS_DIR_NAME] = createLogsDir(LOGS_DIR_URL);
-  restoreStatusesObject[LOG_FILE_BASIS_NAME] = createLogFile(LOG_FILE_URL, LOG_FILE_NAME);
+  
+  restoreStatusesObject[LOGS_DIR_NAME] = createLogsDir();
+  restoreStatusesObject[LOG_FILE_BASIS_NAME] = createLogFile();
 
   return JSON.stringify(restoreStatusesObject);
 }
