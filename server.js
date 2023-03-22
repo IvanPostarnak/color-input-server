@@ -6,13 +6,13 @@ const { restoreEnvironment } = require(path.resolve('src', 'modules', 'restoreEn
 const { writeLog } = require(path.resolve('src', 'modules', 'serverLog', 'serverLog.js'));
 
 const RESTORE_STATUSES = {};
-restoreEnvironment()
-.then((response) => {
-  for (let key in JSON.parse(response)) {
-    RESTORE_STATUSES[key] = JSON.parse(response)[key];
-  }
-  writeLog(`RESTORE_STATUSES: ${JSON.stringify(RESTORE_STATUSES)}`);
-});
+let response = restoreEnvironment();
+console.log(response)
+
+for (let key in JSON.parse(response)) {
+  RESTORE_STATUSES[key] = JSON.parse(response)[key];
+}
+writeLog(`RESTORE_STATUSES: ${JSON.stringify(RESTORE_STATUSES)}`);
 
 dotenv.config();
 writeLog(`PORT: ${process.env.PORT}, HOST: ${process.env.hostname}`);

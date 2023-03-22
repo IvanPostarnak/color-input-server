@@ -1,15 +1,15 @@
-const fsPromise = require('fs/promises');
+const fs = require('fs');
 
-async function createLogsDir(dirURL) {
-  return fsPromise.mkdir(dirURL)
-  .then(() => {
+function createLogsDir(dirURL) {
+
+  try {
+    fs.mkdir(dirURL, (err) => {});
     return true;
-  })
-  .catch((err) => {
+
+  } catch (err) {
     return err.code;
-  })
+
+  }
 }
 
-module.exports = {
-  createLogsDir: createLogsDir
-}
+module.exports = createLogsDir;

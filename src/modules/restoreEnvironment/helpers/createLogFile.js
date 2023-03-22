@@ -1,24 +1,24 @@
-const fsPromise = require('fs/promises');
+const fs = require('fs');
 
-async function createLogFile(logURL, logFileName) {
+function createLogFile(logURL, logFileName) {
   const date = new Date();
-  let logEntryString = `FILE ${logFileName} was created at ${date.getHours()}:${date.getMinutes()}`;
+  let logEntryString = `FILE '${logFileName}' was created at ${date.getHours()}:${date.getMinutes()}`;
 
-  return fsPromise.access(logURL)
-  .then(() => {
+  try {
+    fs.access(logURL, fs.constants.R_OK);
     return false;
-  })
-  .catch(() => {
-    return fsPromise.writeFile(logURL, logEntryString)
-    .then(() => {
+
+  } catch (errAccess) {
+
+    try {
+      fs.writeFile(logURL, logEntryString, (err) => {});
       return true;
-    })
-    .catch((err) => {
-      return err.message;
-    })
-  });
+
+    } catch (errWrite) {
+      return errWrite.code;
+
+    }
+  }
 }
 
-module.exports = {
-  createLogFile: createLogFile
-}
+module.exports = createLogFile;
