@@ -22,6 +22,17 @@ const LOG_FILE_NAME = `${LOG_FILE_BASIS_NAME}-${DATE.getDate()}-${DATE.getMonth(
 // url of log file
 const LOG_FILE_URL = path.join(LOGS_DIR_URL, LOG_FILE_NAME);
 
+exports.logNames = {
+  LOGS_DIR_NAME,
+  LOG_FILE_BASIS_NAME,
+  LOG_FILE_NAME,
+}
+
+exports.logURLs = {
+  LOGS_DIR_URL,
+  LOG_FILE_URL
+}
+
 module.exports = {
   LOGS_DIR_NAME,
   LOGS_DIR_URL,
