@@ -9,7 +9,7 @@ function logCounter() {
     return count;
   }
 
-  return [increment, getCount];
+  return {increment, getCount};
 }
 
 module.exports = logCounter;
