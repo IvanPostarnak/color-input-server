@@ -6,7 +6,7 @@ const makeGoodLooking = require('./../helpers/makeGoodLooking');
 
 async function writeLog(data, caller) {
   const { increment, getCount } = logCounter();
-
+  
   const typeofData = getDataType(data);
   let dataString;
 
