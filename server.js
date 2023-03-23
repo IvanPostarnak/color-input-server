@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 
 const { restoreEnvironment } = require('./src/modules/restoreEnvironment/restoreEnvironment');
 const { writeLog } = require('./src/modules/serverLog/serverLog');
-const createServer = require('./src/createServer');
+const createServer = require('./src/helpers/createServer');
 
 // name of main SERVER file
 const SERVER_JS = path.basename(__filename);
@@ -24,10 +24,7 @@ writeLog(`SERVER: ${SERVER}, ${JSON.stringify(SERVER)}`, SERVER_JS);
 SERVER.on('request', (request, response) => {
   const { method, url, headers } = request;
   const userAgent = headers['user-agent'];
-  console.log(`method : '${method}'`);
-  console.log(`url : '${url}'`);
-  console.log(`headers : ${headers}`);
-  console.log(`userAgent : ${userAgent}`);
+  writeLog(`method : '${method}, url : '${url}', userAgent : '${userAgent}'`);
 
   let requestData = [];
   request.on('data', (chunk) => {
@@ -41,8 +38,8 @@ SERVER.on('request', (request, response) => {
   })
 
   response.statusCode = 200;
-  response.statusMessage = 'response message here';
-  response.setHeader('content-type', 'application/json');
+  response.statusMessage = 'response-message-here';
+  response.setHeader('content-type', 'text/plain');
 
   response.write('First chunk');
   response.write('Second chunk');
