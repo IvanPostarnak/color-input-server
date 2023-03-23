@@ -4,13 +4,16 @@ const path = require('path');
 const ROOT = path.join('.', '..');
 
 // database dir name
-const DB_ROOT = 'color-input-database'
+const DB_ROOT_DIR_NAME = 'color-input-database';
+
+// database dir name
+const DB_ROOT_DIR_URL = path.join(ROOT, DB_ROOT_DIR_NAME);
 
 // name of the directory for all txt database
 const TXT_DB_DIR_NAME = 'txt';
 
 // url of txt DB directory
-const TXT_DB_DIR_URL = path.join(ROOT, DB_ROOT, TXT_DB_DIR_NAME);
+const TXT_DB_DIR_URL = path.join(DB_ROOT_DIR_URL, TXT_DB_DIR_NAME);
 
 // basis file name for single color combinations file
 const TXT_DB_CC_FILE_NAME_BASIS = 'color-combinations';
@@ -34,6 +37,7 @@ const TXT_DB_ISSUES_FILE_NAME = `${TXT_DB_ISSUES_FILE_NAME_BASIS}.${TXT_DB_FILE_
 const TXT_DB_ISSUES_FILE_URL = path.join(TXT_DB_DIR_URL, TXT_DB_ISSUES_FILE_NAME);
 
 exports.txtDatabaseNames = {
+  DB_ROOT_DIR_NAME,
   TXT_DB_DIR_NAME,
   TXT_DB_CC_FILE_NAME_BASIS,
   TXT_DB_CC_FILE_NAME,
@@ -42,6 +46,7 @@ exports.txtDatabaseNames = {
 }
 
 exports.txtDatabaseURLs = {
+  DB_ROOT_DIR_URL,
   TXT_DB_DIR_URL,
   TXT_DB_CC_FILE_URL,
   TXT_DB_ISSUES_FILE_URL
