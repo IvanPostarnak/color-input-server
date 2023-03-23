@@ -37,7 +37,20 @@ SERVER.on('request', (request, response) => {
     requestData = Buffer.concat(requestData).toString();
   })
   request.on('error', (error) => {
-    console.error(error);
+    writeLog(`SERVER request error: ${error.message}`, SERVER_JS);
+  })
+
+  response.statusCode = 200;
+  response.statusMessage = 'response message here';
+  response.setHeader('content-type', 'application/json');
+
+  response.write('First chunk');
+  response.write('Second chunk');
+  response.write('Third chunk');
+  response.end('Last chunk');
+
+  response.on('error', (error) => {
+    writeLog(`SERVER response error: ${error.message}`, SERVER_JS);
   })
 })
 
