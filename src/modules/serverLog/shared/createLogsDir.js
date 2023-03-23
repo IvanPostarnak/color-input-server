@@ -5,7 +5,7 @@ function createLogsDir() {
 
   if (fs.existsSync(LOGS_DIR_URL) === false) {
     try {
-      fs.mkdir(LOGS_DIR_URL, (err) => {});
+      fs.mkdirSync(LOGS_DIR_URL);
       return true;
 
     } catch (err) {

@@ -4,7 +4,7 @@ const fs = require('fs');
 function createDatabaseDir() {
   if (fs.existsSync(DB_ROOT_DIR_URL) === false) {
     try {
-      fs.mkdir(DB_ROOT_DIR_URL, (err) => {});
+      fs.mkdirSync(DB_ROOT_DIR_URL);
       return true;
 
     } catch (err) {

@@ -4,7 +4,7 @@ const fs = require('fs');
 function createCCTxtFile() {
   if (fs.existsSync(TXT_DB_CC_FILE_URL) === false) {
     try {
-      fs.writeFileSync(TXT_DB_CC_FILE_URL, '', (err) => {});
+      fs.writeFileSync(TXT_DB_CC_FILE_URL, '');
       return true;
 
     } catch (errWrite) {

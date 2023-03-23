@@ -8,7 +8,7 @@ function createLogFile() {
 
   if (fs.existsSync(LOG_FILE_URL) === false) {
     try {
-      fs.writeFileSync(LOG_FILE_URL, logEntryString, (err) => {});
+      fs.writeFileSync(LOG_FILE_URL, logEntryString);
       return true;
 
     } catch (errWrite) {

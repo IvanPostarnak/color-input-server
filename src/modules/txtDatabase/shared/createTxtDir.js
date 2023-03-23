@@ -4,7 +4,7 @@ const fs = require('fs');
 function createTxtDir() {
   if (fs.existsSync(TXT_DB_DIR_URL) === false) {
     try {
-      fs.mkdir(TXT_DB_DIR_URL, (err) => {});
+      fs.mkdirSync(TXT_DB_DIR_URL);
       return true;
 
     } catch (err) {
