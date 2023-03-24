@@ -37,26 +37,29 @@ SERVER.on('request', (request, response) => {
   const userAgent = headers['user-agent'];
   writeLog(`method : '${method}', url : '${url}', userAgent : '${userAgent}'`, SERVER_JS);
 
-  if (method === 'OPTIONS') {
-    response.statusCode = 200;
-    writeLog(`SERVER react on OPTIONS: ${response.statusCode}`, SERVER_JS);
-    response.end();
-
-  } else if (method === 'POST') {
-    // extracting request data and saving it, if it is a POST method
-    let requestData = [];
-    savingDataStatus = false;
-    request.on('data', (chunk) => {
-      requestData.push(chunk);
-    })
-    request.on('end', () => {
-      requestData = Buffer.concat(requestData).toString();
-      writeLog(`SERVER request data: (${typeof requestData}) ${requestData}`, SERVER_JS);
-      savingDataStatus = saveRequestData(requestData);
-      writeLog(`SERVER savingDataStatus: ${savingDataStatus}`, SERVER_JS);
-      response.statusCode = calcResponseStatusCode(savingDataStatus);
+  switch (method) {
+    case 'OPTIONS':
+      response.statusCode = 200;
+      writeLog(`SERVER react on OPTIONS: ${response.statusCode}`, SERVER_JS);
       response.end();
-    })
+      break;
+    
+    case 'POST':
+      // extracting request data and saving it, if it is a POST method
+      let requestData = [];
+      savingDataStatus = false;
+      request.on('data', (chunk) => {
+        requestData.push(chunk);
+      })
+      request.on('end', () => {
+        requestData = Buffer.concat(requestData).toString();
+        writeLog(`SERVER request data: (${typeof requestData}) ${requestData}`, SERVER_JS);
+        savingDataStatus = saveRequestData(requestData);
+        writeLog(`SERVER savingDataStatus: ${savingDataStatus}`, SERVER_JS);
+        response.statusCode = calcResponseStatusCode(savingDataStatus);
+        response.end();
+      })
+      break;
   }
 
   request.on('error', (error) => {
