@@ -5,6 +5,7 @@ const { restoreEnvironment } = require('./src/modules/restoreEnvironment/restore
 const { writeLog } = require('./src/modules/serverLog/serverLog');
 const createServer = require('./src/shared/createServer');
 const saveRequestData = require('./src/features/saveRequestData');
+const calcResponseStatusCode = require('./src/helpers/calcResponseStatusCode');
 
 // name of main SERVER file
 const SERVER_JS = path.basename(__filename);
@@ -43,9 +44,10 @@ SERVER.on('request', (request, response) => {
   let savingDataStatus = saveRequestData(requestData);
   writeLog(`SERVER savingDataStatus: ${savingDataStatus}`, SERVER_JS);
 
-  response.statusCode = 200;
-  response.statusMessage = 'response-message-here';
+  response.statusCode = calcResponseStatusCode(savingDataStatus);
+  response.statusMessage = '';
   response.setHeader('content-type', 'text/plain');
+  writeLog(`SERVER response.statusCode: ${response.statusCode}`, SERVER_JS);
 
   response.write('First chunk');
   response.write('Second chunk');
