@@ -4,5 +4,7 @@ module.exports = {
   createDatabaseDir: require('./shared/createDatabaseDir'),
   createTxtDir: require('./shared/createTxtDir'),
   createColorCombinationsTxtFile: require('./shared/createCCTxtFile'),
-  createIssuesTxtFile: require('./shared/createIssuesTxtFile')
+  createIssuesTxtFile: require('./shared/createIssuesTxtFile'),
+  saveCombinations: require('./features/saveCombinations'),
+  saveIssues: require('./features/saveIssues')
 }

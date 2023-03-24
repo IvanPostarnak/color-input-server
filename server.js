@@ -3,7 +3,8 @@ const dotenv = require('dotenv');
 
 const { restoreEnvironment } = require('./src/modules/restoreEnvironment/restoreEnvironment');
 const { writeLog } = require('./src/modules/serverLog/serverLog');
-const createServer = require('./src/helpers/createServer');
+const createServer = require('./src/shared/createServer');
+const saveRequestData = require('./src/features/saveRequestData');
 
 // name of main SERVER file
 const SERVER_JS = path.basename(__filename);
@@ -32,10 +33,15 @@ SERVER.on('request', (request, response) => {
   })
   request.on('end', () => {
     requestData = Buffer.concat(requestData).toString();
+    writeLog(`SERVER request data: ${requestData}`, SERVER_JS);
   })
   request.on('error', (error) => {
     writeLog(`SERVER request error: ${error.message}`, SERVER_JS);
   })
+
+  // saving requestData into database
+  let savingDataStatus = saveRequestData(requestData);
+  writeLog(`SERVER savingDataStatus: ${savingDataStatus}`, SERVER_JS);
 
   response.statusCode = 200;
   response.statusMessage = 'response-message-here';

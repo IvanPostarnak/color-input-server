@@ -3,7 +3,7 @@ const fs = require('fs');
 
 function writeIssue(issueString) {
   try {
-    fs.writeFileSync(TXT_DB_ISSUES_FILE_URL, issueString);
+    fs.appendFileSync(TXT_DB_ISSUES_FILE_URL, issueString);
     return true;
     
   } catch (err) {
