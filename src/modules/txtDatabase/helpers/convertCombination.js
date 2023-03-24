@@ -3,7 +3,7 @@ function convertCombination(arrayOfColors) {
 
   try {
     solutionString = `(${arrayOfColors.length})`;
-    for (let color in arrayOfColors) {
+    for (let color of arrayOfColors) {
       solutionString += ' ' + color;
     }
 

@@ -3,7 +3,7 @@ function convertIssueMeta(issueObj) {
 
   try {
     for (let key in issueObj) {
-      if (key !== "name" && ket !== 'description') {
+      if (key !== "name" && key !== 'description') {
         solutionMetaString += `${key}:${issueObj[key]}` + ',';
       }
     }

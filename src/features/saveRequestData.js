@@ -5,6 +5,7 @@ const { writeLog } = require('./../modules/serverLog/serverLog');
 function saveRequestData(dataString) {
   const SAVE_DATA_JS = path.basename(__filename);
   writeLog(`enter 'saveRequestData' function`, SAVE_DATA_JS);
+  writeLog(`dataString : ${dataString}`, SAVE_DATA_JS);
 
   let requestDataObject;
   try {
@@ -16,7 +17,7 @@ function saveRequestData(dataString) {
   }
 
   const combinationsArray = requestDataObject["combinations"];
-  const combinationSaveStatus = saveCombinations(issuesArray);
+  const combinationSaveStatus = saveCombinations(combinationsArray);
   writeLog(`combinationsArray : ${JSON.stringify(combinationsArray)}`, SAVE_DATA_JS);
   writeLog(`combinationSaveStatus : ${JSON.stringify(combinationSaveStatus)}`, SAVE_DATA_JS);
 
